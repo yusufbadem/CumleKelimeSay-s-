@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="input-box">
+            <label >Metin :</label>
+            <input type="text" id="content">
+        </div>
+        <div>
+            <button onclick="textAnaliz()">Analiz Et</button>
+        </div>
+    </div>
+    <hr>
+
+    <div class="analiz-box">
+        <ul id="ul-box">
+            <li id="li-box">
+
+            </li>
+        </ul>
+    </div>
+    
+</body>
+
+    <script>
+        function textAnaliz(){
+            
+            const inputElement=document.getElementById("content");
+            let textContent=inputElement.value;
+
+            let sentence=0;
+            let word=0;
+            let character=0;
+            let space=0;
+
+            for(let i=0;i<textContent.length; i++){
+                if(textContent[i]!=" "){
+                    character++;
+                }
+
+                if (textContent[i]==".") {
+                    sentence++;
+                }
+
+                if (textContent[i]==" ") {
+                    space++;
+                }
+            }
+
+            word=space+1;
+
+            const ulElement=document.createElement("ul");
+
+            const liCharacter=document.createElement("li");
+            const liWord=document.createElement("li");
+            const liSentence=document.createElement("li");
+
+            liCharacter.innerHTML="Karakter Sayısı : " + character;
+            liWord.innerHTML="İçinde geçen kelime sayısı : " + word;
+            liSentence.innerHTML="içinde gecen cümle sayısı : " + sentence;
+          
+
+            ulElement.appendChild(liSentence);
+            ulElement.appendChild(liWord);
+            ulElement.appendChild(liCharacter);
+            
+
+            document.querySelector(".analiz-box").appendChild(ulElement);
+
+        }
+
+    </script>
+</html>
